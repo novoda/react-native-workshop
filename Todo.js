@@ -7,9 +7,12 @@ const styles = StyleSheet.create({
     }
 })
 
-export const Todo = ({ name, completed }) => (
+export const Todo = ({ name, completed, onTodoChanged }) => (
     <View style={styles.container}>
         <Text>{name}</Text>
-        <Switch value={completed} />
+        <Switch
+            value={completed}
+            onValueChange={completed => onTodoChanged(completed)}
+        />
     </View>
 );

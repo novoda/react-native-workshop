@@ -24,10 +24,18 @@ export default class App extends React.Component {
     };
   }
 
+  onTodoChanged = ({ completed, index }) => {
+    this.setState(({ todos }) => {
+      return {
+        todos: todos.map((todo, i) => index === i ? { ...todo, completed } : todo)
+      }
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos} onTodoChanged={this.onTodoChanged} />
       </View>
     );
   }
