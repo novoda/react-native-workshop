@@ -3,26 +3,10 @@ import { StyleSheet, SafeAreaView, AsyncStorage } from 'react-native';
 import { TodoList } from './TodoList';
 import { AddTodo } from './AddTodo';
 
-const defaultTodos = [
-  {
-    name: "Take the dog out",
-    completed: false,
-  },
-  {
-    name: "Go to the gym",
-    completed: true,
-  },
-  {
-    name: "Prepare dinner",
-    completed: false
-  }
-];
-
 export default class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { todos: defaultTodos };
+  state = {
+    todos: []
   }
 
   componentDidMount() {
