@@ -1,6 +1,12 @@
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import { Todo } from "./Todo";
+
+const styles = StyleSheet.create({
+    list: {
+        padding: 4
+    }
+})
 
 export const TodoList = ({ todos, onTodoChanged }) => {
     const extractor = todo => todo.name;
@@ -13,6 +19,7 @@ export const TodoList = ({ todos, onTodoChanged }) => {
             data={todos}
             keyExtractor={extractor}
             renderItem={renderItem}
+            contentContainerStyle={styles.list}
         />
     );
 }
