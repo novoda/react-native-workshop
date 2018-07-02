@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Todo } from "./Todo";
 
 const todosData = [
   {
@@ -14,9 +15,8 @@ const todosData = [
 ];
 
 export default class App extends React.Component {
-
   render() {
-    const todos = todosData.map(todo => <Text key={todo.name}>{todo.name}</Text>)
+    const todos = todosData.map(todo => <Todo name={todo.name} key={todo.name} />);
     return (
       <View style={styles.container}>
         {todos}
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 18
   },
 });
