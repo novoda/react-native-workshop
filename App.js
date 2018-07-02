@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Todo } from "./Todo";
+import { TodoList } from './TodoList';
 
-const todosData = [
+const todos = [
   {
     name: "Take the dog out",
   },
@@ -16,10 +16,9 @@ const todosData = [
 
 export default class App extends React.Component {
   render() {
-    const todos = todosData.map(todo => <Todo name={todo.name} key={todo.name} />);
     return (
       <View style={styles.container}>
-        {todos}
+        <TodoList todos={todos} />
       </View>
     );
   }
