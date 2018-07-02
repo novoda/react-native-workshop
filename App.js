@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import { TodoList } from './TodoList';
 
 export default class App extends React.Component {
@@ -34,9 +34,9 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <TodoList todos={this.state.todos} onTodoChanged={this.onTodoChanged} />
-      </View>
+      </SafeAreaView>
     );
   }
 }
@@ -44,7 +44,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingTop: 18
+    backgroundColor: '#fff'
   },
 });
