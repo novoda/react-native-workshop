@@ -3,7 +3,9 @@ import { View, Switch, Text, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     }
 })
 
