@@ -29,6 +29,8 @@ export default class App extends React.Component {
       return {
         todos: todos.map((todo, i) => index === i ? { ...todo, completed } : todo)
       }
+    }, () => {
+      AsyncStorage.setItem('todos', JSON.stringify(this.state.todos))
     });
   }
 
