@@ -1,13 +1,25 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+const todosData = [
+  {
+    name: "Take the dog out",
+  },
+  {
+    name: "Go to the gym",
+  },
+  {
+    name: "Prepare dinner",
+  }
+];
+
 export default class App extends React.Component {
+
   render() {
+    const todos = todosData.map(todo => <Text key={todo.name}>{todo.name}</Text>)
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        {todos}
       </View>
     );
   }
