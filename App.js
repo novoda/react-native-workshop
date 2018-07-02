@@ -5,12 +5,15 @@ import { TodoList } from './TodoList';
 const todos = [
   {
     name: "Take the dog out",
+    completed: false,
   },
   {
     name: "Go to the gym",
+    completed: true,
   },
   {
     name: "Prepare dinner",
+    completed: false
   }
 ];
 
