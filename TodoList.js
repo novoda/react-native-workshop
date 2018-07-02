@@ -4,7 +4,7 @@ import { Todo } from "./Todo";
 
 export const TodoList = ({ todos }) => {
     const extractor = todo => todo.name;
-    const renderItem = ({ item }) => <Todo name={item.name} />;
+    const renderItem = ({ item }) => <Todo {...item} />;
     return (
         <FlatList
             data={todos}
