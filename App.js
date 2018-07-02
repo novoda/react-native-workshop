@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, AsyncStorage } from 'react-native';
 import { TodoList } from './TodoList';
+import { AddTodo } from './AddTodo';
 
 const defaultTodos = [
   {
@@ -32,20 +33,32 @@ export default class App extends React.Component {
     })
   }
 
+  syncTodos = () => {
+    AsyncStorage.setItem('todos', JSON.stringify(this.state.todos))
+
+  }
+
   onTodoChanged = ({ completed, index }) => {
     this.setState(({ todos }) => {
       return {
         todos: todos.map((todo, i) => index === i ? { ...todo, completed } : todo)
       }
-    }, () => {
-      AsyncStorage.setItem('todos', JSON.stringify(this.state.todos))
-    });
+    }, this.syncTodos);
+  }
+
+  onTodoSaved = (name) => {
+    this.setState(({ todos }) => {
+      return {
+        todos: [...todos, { name, completed: false }]
+      }
+    }, this.syncTodos)
   }
 
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <TodoList todos={this.state.todos} onTodoChanged={this.onTodoChanged} />
+        <TodoList style={styles.todos} todos={this.state.todos} onTodoChanged={this.onTodoChanged} />
+        <AddTodo onTodoSaved={this.onTodoSaved} />
       </SafeAreaView>
     );
   }
@@ -56,4 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
+  todos: {
+    flex: 1
+  }
 });
