@@ -92,7 +92,7 @@ const overrideDefaults = {...defaults, ...options} // {log: false, debug: false}
 const overrideWithFields = {...defaults, debug: false} // {log: false, debug: false}
 ```
 
-You can **destructure** objects and arrays.
+You can **destructure** (access their inner values directly) objects and arrays.
 ```javascript
 const [first, second] = [1,2,3]; // first: 1, second: 2
 const [, last] = [1,2,3]; // last: 3
