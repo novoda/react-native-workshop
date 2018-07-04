@@ -178,8 +178,13 @@ Since `todoElements` is an expression, we can include it inside our `View`, inst
 
 ---
 # Keys in loops
-Components rendered with loops require a `key` property that identifies them.
-Keys are important for react to be able to understand which views have been added, removed or altered. Use `todo.name` as a key for now.
+
+If you reloaded, you'll notice there's a small yellow warning on the bottom of the app. Components rendered with loops require a `key` property that identifies them.
+Keys are important for react to be able to understand which views have been added, removed or altered.
+
+> As you can do inside a component, you can use `propName={expression}` to pass properties. If it's a hardcoded string, prefer `propName="value"`.
+
+Before moving to the next step, let's use `todo.name` as a key for our elements.
 
 ---
 # Conventions
