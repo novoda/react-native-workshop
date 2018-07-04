@@ -199,7 +199,8 @@ const Hello = ({name}) => (
 );
 ```
 
-> The component will receive a parameter represented the props passed to it, in this example `name` is one of the props `Hello` can accept, and we're using destructuring to access it directly.
+> The component will receive a parameter containing the props passed to it, in this example `name` is one of the props `Hello` can accept, and we're using destructuring to access it directly.
+
 > You can the use the component importing it (if it was declared it in another file, remember to export it!) and using it as any other component.
 
 ```javascript
