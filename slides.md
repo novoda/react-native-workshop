@@ -156,14 +156,25 @@ import anotherFunction, {aFunction} from "./someFile";
 
 ---
 # Hello Todo!
-1. Edit `App.js` so that the list rendered from an array:
+Currently `App.js` is quite boring, it would be great if instead of having the todos hardcoded, we could somehow cycle through an array of todos and show a `Text` per element.
+
+First of all, we need to extract the data for the todos, in `App.js`:
 ```javascript
 const todos = [{
     name: "Take the dog out",
-  }, ...
+  }, // ...
 ];
 ```
-You can use `todos.map()` to return a component, return a `Text` component showing `todo.name`.
+
+Inside `render()`, you can then map those todos to a certain element:
+
+```javascript
+const todoElements = todos.map(todo => <Text>{todo.name}</Text>);
+```
+
+> Inside a component you can include a JS expression with `{expression}`, in this case `{todo.name}`.
+
+Since `todoElements` is an expression, we can include it inside our `View`, instead of the 3 `Text` elements, remember to use `{}`!
 
 ---
 # Keys in loops
