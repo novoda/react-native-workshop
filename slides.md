@@ -104,7 +104,7 @@ const add = ({first, second}) => first + second;
 add({first: 1, second: 2});
 ```
 
-To check for equality, **always** use the triple equal `===`. Objects are **never** equal between each other.
+To check for equality, **always** use the triple equal `===`. Objects are **never** equal between each other. `==` casts the two object to the same type before comparing, and assumptions on the behaviour might lead to unexpected results because the implementation might be not intuitive.
 
 ```javascript
 const a = 1;
