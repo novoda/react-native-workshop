@@ -42,7 +42,7 @@ To create objects (string indexed dictionaries), you can use curly brackets.
 ```javascript
 const obj = {
   a: 1,
-  b: "Hello"
+  b: "Hello",
   c: {
     nested: true
   }
