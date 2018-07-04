@@ -188,12 +188,27 @@ Before moving to the next step, let's use `todo.name` as a key for our elements.
 
 ---
 # Abstracting away
-The app looks amazing! But it would be great to have a component `Todo` instead of using `Text`. The simplest components can be functions that accept properties and return other components, strings or `null`. Pay attention to the brackets for the function, we'll go over that next.
+
+Now that our single todo is well isolated, we can extract it to a separate component.
+
+> The simplest component is a function that returns a tree of elements. It must have no side effects and return the same result given the same input.
+
 ```javascript
-export const MyComponent = ({name}) => <Text>Hello {name}!</Text>;
-<MyComponent name="Daniele" /> // Somewhere in the app
+const Hello = ({name}) => (
+  <Text>Hello {name}!</Text>
+);
 ```
-You can reference JS variables using `{curlyBraces}`.
+
+> The component will receive a parameter represented the props passed to it, in this example `name` is one of the props `Hello` can accept, and we're using destructuring to access it directly.
+> You can the use the component importing it (if it was declared it in another file, remember to export it!) and using it as any other component.
+
+```javascript
+<Hello name="Daniele" />
+```
+
+> Note that in this case, since we don't accept children (components inside our component), the component has only one tag, which is called self closing, and terminates with `/>` instead of just `>`.
+
+Extract a `TodoItem` component, that accepts a `name` parameter, and substitute the `Text`s with it.
 
 ---
 # ({a, b, c})?!?
