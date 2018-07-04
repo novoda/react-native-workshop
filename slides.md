@@ -187,11 +187,6 @@ Keys are important for react to be able to understand which views have been adde
 Before moving to the next step, let's use `todo.name` as a key for our elements.
 
 ---
-# Conventions
-- Sometimes I'll reference React Native components, such as `Text`. These can be imported with `import { ComponentName } from "react-native";`.
-- When you need to create a new component, save it in `ComponentName.js` and import it with `import { ComponentName } from "./ComponentName';`.
-
----
 # Abstracting away
 The app looks amazing! But it would be great to have a component `Todo` instead of using `Text`. The simplest components can be functions that accept properties and return other components, strings or `null`. Pay attention to the brackets for the function, we'll go over that next.
 ```javascript
