@@ -213,14 +213,22 @@ Extract a `TodoItem` component, that accepts a `name` parameter, and substitute 
 
 ---
 # Lists
-Our todo list is coming up quite well, but it won't scroll! We could use `ScrollView`, but then all our todos would be rendered at the same time, even the ones off screen.
-To render arbitrary amount of data, we can use `FlatList`.
-`FlatList` accepts these (and more) parameters:
-1. `data`: is our array of todos
-2. `renderItem`: this is a function which will return a component, it receives an object containing the keys `item` (our todo, in this case) and `index`.
-Rewrite the array mapping with `FlatList`.
+Our todo list is coming up quite well, but it won't scroll!
 
-Extract the list inside a `TodoList` component.
+There are a few possible solution to it:
+
+1. Using `ScrollView` instead of our `View` element would make it scrollable.
+2. Using `FlatList`, a similar concept to `RecyclerView` on Android and `UICollectionView` on iOS.
+
+`ScrollView` is usually picked when we have a fixed layout that might not fit in the container, `FlatList` is used when we have an arbitrary amount of data and we want it to be rendered when on screen. We will go with `FlatList`.
+
+> `FlatList` accepts various parameters, in our case we're interested in `data`, which is a list of items to render (our todos), and `renderItem`, which is a callback to render our `Todo` item.
+
+> `renderItem` receives an object containing 2 keys: `item` and `index`, representing the current item in the list and its index, and must return a tree of elements.
+
+We could reuse the same function we used with `todos.map()` earlier, as long as we change how we access the todos (the parameters are inside an object, you can destructure to access them directly).
+
+Extract a `TodoList` element, that accepts a property `todos`, a list of todos, and uses `FlatList` to render `TodoItem`s.
 
 ---
 # Lists - Keys
