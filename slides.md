@@ -139,10 +139,11 @@ You can use `export` to export a variable/class/function. You can use `import` t
 // someFile.js
 export const aFunction = () => {};
 const anotherFunction = () => {};
-export default anotherFunction;
+export default anotherFunction; // this is a default export, only one per file!
 
 // anotherFile.js
 import React, {Component} from "react";
+// anotherFunction is imported as a default, aFunction is imported from the module
 import anotherFunction, {aFunction} from "./someFile";
 ```
 
