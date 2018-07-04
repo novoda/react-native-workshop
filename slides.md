@@ -70,7 +70,7 @@ const double = n => n * 2;
 const makeConfig = () => ({debug: true, log: false}); // returns the object
 ```
 
-You can _spread_ objects and arrays, which applies their content to the current expression. The order in which you spread your object **matters**.
+You can _spread_ objects and arrays, which applies their content to the current expression. The order in which you spread your object **matters**: to decide which ones overrides in case of objects with the same fields, earlier declarations are overridden.
 
 ```javascript
 const numbers = [1, 2, 3];
