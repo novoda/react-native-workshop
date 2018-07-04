@@ -232,9 +232,21 @@ Extract a `TodoList` element, that accepts a property `todos`, a list of todos, 
 
 ---
 # Lists - Keys
-You should now have another warning, `FlatList` needs to figure out the object key somehow, you can solve it two ways:
-1. Add a `key` field to our todos.
-2. Add a new property to `FlatList`: `keyExtractor`. It's a function that receives 2 parameters `(item, index)` and needs to return a `string` key, you could return `todo.name` here. This function isn't receiving an object, don't use the `{}`.
+
+You should now have another warning: `FlatList` needs to figure out the object key somehow. There are 2 ways of solving this.
+
+1. Add a unique `key` field to each one of our todos (the data).
+
+```javascript
+const todos = [{
+  name: "Take the dog out",
+  key: "abc"
+}];
+```
+
+2. Alternatively, we can pass an additional property to `TodoList`: `keyExtractor`. This is a function that receives 2 parameters: `item` and `index` (not inside an object this time), and needs to return a string representing the key of this element.
+
+Pick one of the two options and get rid of the warning, then remove the property `key` from the `TodoItem` element.
 
 ---
 # State & co
