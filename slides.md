@@ -211,13 +211,6 @@ const Hello = ({name}) => (
 Extract a `TodoItem` component, that accepts a `name` parameter, and substitute the `Text`s with it.
 
 ---
-# ({a, b, c})?!?
-To write an anonymous function in JS, you can use `const add = (p2, p2) => { return p1 + p2; }`. There are some tricks to make it easier to write though.
-- Instead of having the body, you can directly return an expression `(p1, p2) => p1 + p2`
-- If your parameter is an object, you can directly reference its keys with `{k1, k2}`.
-- React Components receive an object called `properties`, containing the attributes we pass to the component when we use it: `<MyComponent name="Daniele" />`.
-
----
 # Lists
 Our todo list is coming up quite well, but it won't scroll! We could use `ScrollView`, but then all our todos would be rendered at the same time, even the ones off screen.
 To render arbitrary amount of data, we can use `FlatList`.
