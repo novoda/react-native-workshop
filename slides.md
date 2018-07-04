@@ -11,6 +11,7 @@
 To declare a variable, you can either use `const` (for constants), or `let` (for variables that can change over time).
 
 TLDR: Do not use `var`.
+
 Long explanation: `var` is a variable that can have multiple values as `let`, but it's visible in the outer scope (so: globally if outside a function, all the function inside a function). `let` will be visible only inside the scope it's declared in (e.g., a `for` loop inside a function).
 
 ```javascript
@@ -51,6 +52,7 @@ const obj = {
 To create a function, you can use both the `function` keyword, or use the arrow `=>` syntax. Arrow functions can directly return a value as an expression, and don't need `()` around a single argument. They need `()` around the return value if they return an object.
 
 TLDR: they're mostly interchangeable, but prefer arrow syntax over function.
+
 Long explanation: The main differences are:
 1. Arrow functions cannot be used as constructors (a function works as a class constructor of itself, kind of, `class` is just syntactical sugar).
 2. `this` in arrow functions is easier to reason about: it's the `this` of the scope in which the function is declared. In a normal function, `this` might change depending on how it's invoked.
