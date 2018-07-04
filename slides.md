@@ -4,7 +4,138 @@
 
 ---
 # The tools
+
 ---
+# JavaScript basics
+
+To declare a variable, you can either use `const` (for constants), or `let` (for variables that can change over time). Do not use `var`.
+
+```javascript
+const count = 10;
+
+for (let i = 0; i < count; i++) {
+  console.log(`Hello ${count}`);
+}
+```
+
+You can use single, double, and inverse quotes to create string literals, only inverse quotes can interpolate variables though.
+
+```javascript
+const name = "Daniele";
+
+console.log("Hello " + name);
+console.log('Hello ' + name);
+console.log(`Hello ${name}`);
+```
+
+To create arrays, you can use square brackets `[]`.
+
+```javascript
+const anArray = [1, 2, 3];
+```
+
+To create objects (string indexed dictionaries), you can use curly brackets.
+```javascript
+const obj = {
+  a: 1,
+  b: "Hello"
+  c: {
+    nested: true
+  }
+};
+```
+
+To create a function, you can use both the `function` keyword, or use the arrow `=>` syntax. Arrow functions can directly return a value as an expression, and don't need `()` around a single argument. They need `()` around the return value if they return an object.
+
+```javascript
+function say(name) {
+  console.log(`Hello ${name}`);
+};
+
+const say = (name) => {
+  console.log(`Hello ${name}`);
+};
+
+const double = n => n * 2;
+const makeConfig = () => ({debug: true, log: false}); // returns the object
+```
+
+You can _spread_ objects and arrays, which applies their content to the current expression. The order in which you spread your object **matters**.
+
+```javascript
+const numbers = [1, 2, 3];
+const add = (a, b, c) => a + b + c;
+const total = add(...numbers); // 6
+const twice = [...numbers, ...numbers]; // [1,2,3,1,2,3]
+
+const defaults = {
+  log: false,
+  debug: true
+}
+
+const options = {
+  debug: false
+}
+
+const overrideOptions = {...options, ...defaults} // {log: false, debug: true}
+const overrideDefaults = {...defaults, ...options} // {log: false, debug: false}
+const overrideWithFields = {...defaults, debug: false} // {log: false, debug: false}
+```
+
+You can **destructure** objects and arrays.
+```javascript
+const [first, second] = [1,2,3]; // first: 1, second: 2
+const [, last] = [1,2,3]; // last: 3
+const add = ([first, second]) => first + second;
+add([1,2]);
+
+const {a, b} = {a: 1, b: 2}; // a: 1, b: 2
+const add = ({first, second}) => first + second;
+add({first: 1, second: 2});
+```
+
+To check for equality, **always** use the triple equal `===`. Objects are never equal among each other.
+
+```javascript
+const a = 1;
+const b = "1";
+const c = 1;
+a === b // false
+a === c // true
+
+{a: 1} === {a: 1} // false
+```
+
+To declare a class, use the `class` keyword. To reference fields, use the `this` keyword.
+
+```javascript
+class Hello extends World {
+  constructor(options) {
+    super(options);
+    this.name = options.name;
+  }
+
+  speak() { // method declared as a function
+    console.log(`Hi ${this.name}`);
+  }
+
+  fullName = () => this.name + this.surname; // method declared as arrow function
+}
+```
+
+You can use `export` to export a variable/class/function. You can use `import` to import 3rd party libraries installed via npm and local files.
+
+```javascript
+// someFile.js
+export const aFunction = () => {};
+const anotherFunction = () => {};
+export default anotherFunction;
+
+// anotherFile.js
+import React, {Component} from "react";
+import anotherFunction, {aFunction} from "./someFile";
+```
+
 # Getting started
 1. Clone the kata
 2. Install the dependencies with `yarn install`
