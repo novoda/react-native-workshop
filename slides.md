@@ -222,9 +222,10 @@ There are a few possible solutions to it:
 
 `ScrollView` is usually picked when we have a fixed layout that might not fit in the container, `FlatList` is used when we have an arbitrary amount of data and we want to render only the components that are visible on screen. We will go with `FlatList`.
 
-> `FlatList` accepts various parameters, in our case we're interested in `data`, which is a list of items to render (our todos), and `renderItem`, which is a callback to render our `Todo` item.
+`FlatList` accepts various properties, we will focus on 2 of them:
 
-> `renderItem` receives an object containing 2 keys: `item` and `index`, representing the current item in the list and its index, and must return a tree of elements.
+1. `data`, which represents the data we want to render.
+2. `renderItem`, which is expected to be a function. It receives an object containing 2 keys: `item` and `index`, representing the current item in the list and its index, and must return a tree of elements.
 
 We could reuse the same function we used with `todos.map()` earlier, as long as we change how we access the todos (the parameters are inside an object, you can destructure to access them directly).
 
