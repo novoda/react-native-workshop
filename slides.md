@@ -51,11 +51,11 @@ const obj = {
 
 To create a function, you can use both the `function` keyword, or use the arrow `=>` syntax. Arrow functions can directly return a value as an expression, and don't need `()` around a single argument. They need `()` around the return value if they return an object.
 
-TLDR: they're mostly interchangeable, but prefer arrow syntax over function.
+tl;dr: they're mostly interchangeable, but prefer arrow syntax over function.
 
-Long explanation: The main differences are:
+There are 2 main differences between arrow and function syntax:
 1. Arrow functions cannot be used as constructors (a function works as a class constructor of itself, kind of, `class` is just syntactical sugar).
-2. `this` in arrow functions is easier to reason about: it's the `this` of the scope in which the function is declared. In a normal function, `this` might change depending on how it's invoked.
+2. The `this` keyword: in JS, it represents the _context_ with which the function is executed. In functions, the context might change depending on how the function is invoked (for example, you could provide a different `this` using `Function::apply(thisArg, args)`). In arrow functions, it doesn't change at runtime (it will inherit the parent context, in the current scope).
 
 ```javascript
 function say(name) {
