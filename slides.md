@@ -156,9 +156,9 @@ import anotherFunction, {aFunction} from "./someFile";
 
 ---
 # Hello Todo!
-Currently, `App.js` is quite boring, it would be great if instead of having the todos hardcoded, we could somehow cycle through an array of todos and show a `Text` per element.
+Currently, `App.js` is quite boring, it would be great if instead of having the TODOs hardcoded, we could somehow cycle through an array of TODOs and show a `Text` per element.
 
-First of all, we need to extract the data for the todos, in `App.js`:
+First of all, we need to extract the data for the TODOs, in `App.js`:
 ```javascript
 const todos = [{
     name: "Take the dog out",
@@ -166,7 +166,7 @@ const todos = [{
 ];
 ```
 
-Inside `render()`, you can then map those todos to a certain element:
+Inside `render()`, you can then map those TODOs to a certain element:
 
 ```javascript
 const todoElements = todos.map(todo => <Text>{todo.name}</Text>);
@@ -189,7 +189,7 @@ Before moving to the next step, let's use `todo.name` as a key for our elements.
 ---
 # Abstracting away
 
-Now that our single todo is well isolated, we can extract it to a separate component.
+Now that our single TODO is well isolated, we can extract it to a separate component.
 
 The simplest component (a **stateless** component) is a function that returns a tree of elements. It must have no side effects and return the same result given the same input.
 
@@ -214,7 +214,7 @@ Extract a `TodoItem` component, that accepts a `name` parameter, and substitute 
 
 ---
 # Lists
-Our to-do list is coming up quite well, but it won't scroll!
+Our TODO list is coming up quite well, but it won't scroll!
 
 There are a few possible solutions to it:
 
@@ -228,16 +228,16 @@ There are a few possible solutions to it:
 1. `data`, which represents the data we want to render.
 2. `renderItem`, which is expected to be a function. It receives an object containing 2 keys: `item` and `index`, representing the current item in the list and its index, and must return a tree of elements.
 
-We could reuse the same function we used with `todos.map()` earlier, as long as we change how we access the todos (the parameters are inside an object, you can destructure to access them directly).
+We could reuse the same function we used with `todos.map()` earlier, as long as we change how we access the TODOs (the parameters are inside an object, you can destructure to access them directly).
 
-Extract a `TodoList` element, that accepts a property `todos`, a list of todos, and uses `FlatList` to render `TodoItem`s.
+Extract a `TodoList` element, that accepts a property `todos`, a list of TODOs, and uses `FlatList` to render `TodoItem`s.
 
 ---
 # Lists - Keys
 
 You should now have another warning: `FlatList` needs to figure out the object key somehow. There are 2 ways of solving this.
 
-1. Add a unique `key` field to each one of our todos (the data).
+1. Add a unique `key` field to each one of our TODOs (the data).
 
 ```javascript
 const todos = [{
@@ -252,12 +252,12 @@ Pick one of the two options and get rid of the warning, then remove the property
 
 ---
 # State & co
-It's time to tick some todos, let's add a new field to them: `completed`, and set it to `false`.
+It's time to tick some TODOs, let's add a new field to them: `completed`, and set it to `false`.
 
 Now, let's add that to our properties in `Todo`, and let's use a `Switch` to display it. The property to tell a `Switch` if it's active or not is `value`.
 
 ---
-# Tick a todo! {.big}
+# Tick a TODO! {.big}
 
 ---
 # It lives..!
@@ -271,7 +271,7 @@ Now, let's add that to our properties in `Todo`, and let's use a `Switch` to dis
 # State - getting and initial
 To make the `Switch` work, we need to **change the state of our app**. React class components can be stateful, which means the `App` component can hold its state and React to events.
 
-To access the state in a component, you can use `this.state`. This means our `App` component can pass the todo list as a property to `TodoList`, receiving it from the state.
+To access the state in a component, you can use `this.state`. This means our `App` component can pass the TODO list as a property to `TodoList`, receiving it from the state.
 
 The initial state can be set in the constructor of a component, or alternatively `state = initialState` inside the class.
 
