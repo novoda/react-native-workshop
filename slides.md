@@ -180,7 +180,7 @@ Since `todoElements` is an expression, we can include it inside our `View`, inst
 # Keys in loops
 
 If you reloaded, you'll notice there's a small yellow warning on the bottom of the app. Components rendered with loops require a `key` property that identifies them.
-Keys are important for react to be able to understand which views have been added, removed or altered.
+Keys are important for React to be able to understand which views have been added, removed or altered.
 
 As you can do inside a component, you can use `propName={expression}` to pass properties. If it's a hardcoded string, prefer `propName="value"`.
 
@@ -269,7 +269,7 @@ Now, let's add that to our properties in `Todo`, and let's use a `Switch` to dis
 
 ---
 # State - getting and initial
-To make the `Switch` work, we need to **change the state of our app**. React class components can be stateful, which means the `App` component can hold its state and react to events.
+To make the `Switch` work, we need to **change the state of our app**. React class components can be stateful, which means the `App` component can hold its state and React to events.
 
 To access the state in a component, you can use `this.state`. This means our `App` component can pass the todo list as a property to `TodoList`, receiving it from the state.
 
