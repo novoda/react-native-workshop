@@ -172,7 +172,7 @@ Inside `render()`, you can then map those todos to a certain element:
 const todoElements = todos.map(todo => <Text>{todo.name}</Text>);
 ```
 
-> Inside a component you can include a JS expression with `{expression}`, in this case `{todo.name}`.
+> Inside a component you can include a JS expression with `{expression}`, in this case, `{todo.name}`.
 
 Since `todoElements` is an expression, we can include it inside our `View`, instead of the 3 `Text` elements, remember to use `{}`!
 
@@ -208,20 +208,20 @@ To pass props to a component, add them as an attribute when you use it.
 <Hello name="Daniele" />
 ```
 
-> Note that, in this case, since we don't accept children (components inside our component), the component has only one tag, which is called self closing, and terminates with `/>` instead of just `>`.
+> Note that, in this case, since we don't accept children (components inside our component), the component has only one tag, which is called self-closing, and terminates with `/>` instead of just `>`.
 
 Extract a `TodoItem` component, that accepts a `name` parameter, and substitute the `Text`s with it.
 
 ---
 # Lists
-Our todo list is coming up quite well, but it won't scroll!
+Our to-do list is coming up quite well, but it won't scroll!
 
 There are a few possible solutions to it:
 
 1. Using `ScrollView` instead of our `View` element would make it scrollable.
 2. Using `FlatList`, a similar concept to `RecyclerView` on Android and `UICollectionView` on iOS.
 
-`ScrollView` is usually picked when we have a fixed layout that might not fit in the container, `FlatList` is used when we have an arbitrary amount of data and we want to render only the components that are visible on screen. We will go with `FlatList`.
+`ScrollView` is usually picked when we have a fixed layout that might not fit in the container, `FlatList` is used when we have an arbitrary amount of data and we want to render only the components that are visible on the screen. We will go with `FlatList`.
 
 `FlatList` accepts various properties, we will focus on 2 of them:
 
