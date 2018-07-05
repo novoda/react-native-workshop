@@ -22,7 +22,7 @@ for (let i = 0; i < count; i++) {
 }
 ```
 
-You can use single, double, and inverse quotes to create string literals, only inverse quotes can interpolate variables though.
+You can use single, double, and inverse quotes to create string literals, only backticks can interpolate variables though.
 
 ```javascript
 const name = "Daniele";
