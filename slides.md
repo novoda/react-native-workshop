@@ -132,19 +132,43 @@ class Hello extends World {
   fullName = () => this.name + this.surname; // method declared as arrow function
 }
 ```
+You can use `export` to export a variable/class/function. One of the exports can be declared as a `default` export.
 
-You can use `export` to export a variable/class/function. You can use `import` to import 3rd party libraries installed via npm and local files.
+You can use `import` to import other JS modules: you can access local files using a relative path, and dependencies installed via NPM using the name of the package in the import statement.
+
+To import a default export:
 
 ```javascript
-// someFile.js
-export const aFunction = () => {};
-const anotherFunction = () => {};
-export default anotherFunction; // this is a default export, only one per file!
+// hello.js
+// you can export a class as default in one line
+export default class Hello {};
+// or, if you're exporting a variable
+const Hello = "world";
+export default Hello;
 
 // anotherFile.js
-import React, {Component} from "react";
-// anotherFunction is imported as a default, aFunction is imported from the module
-import anotherFunction, {aFunction} from "./someFile";
+import React from "react"; // importing from a dependency
+import Hello from "./hello"; // importing from a local file
+```
+
+To import other exports:
+
+```javascript
+// hello.js
+// to export a class as non default, you need to export it after being declared
+class Hello {};
+export {
+  Hello
+}
+// you can export a variable in one line
+export const Hello = "world";
+
+// anotherFile.js
+import {Component} from "react";
+import {Hello} from "./hello";
+// or alternatively, you can have one import and reference fields
+import AnyName from "hello";
+doSomething(AnyName.Hello)
 ```
 
 # Getting started
