@@ -94,10 +94,10 @@ const overrideWithFields = {...defaults, debug: false} // {log: false, debug: fa
 
 You can **destructure** (access their inner values directly) objects and arrays.
 ```javascript
-const [first, second] = [1,2,3]; // first: 1, second: 2
-const [, last] = [1,2,3]; // last: 3
+const [first, second] = [1, 2, 3]; // first: 1, second: 2
+const [, last] = [1, 2, 3]; // last: 3
 const add = ([first, second]) => first + second;
-add([1,2]);
+add([1, 2]);
 
 const {a, b} = {a: 1, b: 2}; // a: 1, b: 2
 const add = ({first, second}) => first + second;
