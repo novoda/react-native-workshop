@@ -10,9 +10,9 @@
 
 To declare a variable, you can either use `const` (for constants), or `let` (for variables that can change over time).
 
-TLDR: Do not use `var`.
+tl;dr: Do not use `var`.
 
-Long explanation: `var` is a variable that can have multiple values as `let`, but it's visible in the outer scope (so: globally if outside a function, all the function inside a function). `let` will be visible only inside the scope it's declared in (e.g., a `for` loop inside a function).
+`var` is a variable that can have multiple values like `let`, but it's visible in the outer scope (which means, globally if declared outside a function, in the whole function body if declared inside). `let` will only be visible inside the scope it's declared in (e.g., a `for` loop inside a function).
 
 ```javascript
 const count = 10;
@@ -22,7 +22,7 @@ for (let i = 0; i < count; i++) {
 }
 ```
 
-You can use single, double, and inverse quotes to create string literals, only inverse quotes can interpolate variables though.
+You can use single, double, and inverse quotes to create string literals, only backticks can interpolate variables though.
 
 ```javascript
 const name = "Daniele";
@@ -51,11 +51,11 @@ const obj = {
 
 To create a function, you can use both the `function` keyword, or use the arrow `=>` syntax. Arrow functions can directly return a value as an expression, and don't need `()` around a single argument. They need `()` around the return value if they return an object.
 
-TLDR: they're mostly interchangeable, but prefer arrow syntax over function.
+tl;dr: they're mostly interchangeable, but prefer arrow syntax over function.
 
-Long explanation: The main differences are:
+There are 2 main differences between arrow and function syntax:
 1. Arrow functions cannot be used as constructors (a function works as a class constructor of itself, kind of, `class` is just syntactical sugar).
-2. `this` in arrow functions is easier to reason about: it's the `this` of the scope in which the function is declared. In a normal function, `this` might change depending on how it's invoked.
+2. The `this` keyword: in JS, it represents the _context_ with which the function is executed. In functions, the context might change depending on how the function is invoked (for example, you could provide a different `this` using `Function::apply(thisArg, args)`). In arrow functions, it doesn't change at runtime (it will inherit the parent context, in the current scope).
 
 ```javascript
 function say(name) {
@@ -70,7 +70,7 @@ const double = n => n * 2;
 const makeConfig = () => ({debug: true, log: false}); // returns the object
 ```
 
-You can _spread_ objects and arrays, which applies their content to the current expression. The order in which you spread your object **matters**: to decide which ones overrides in case of objects with the same fields, earlier declarations are overridden.
+You can _spread_ objects and arrays, which applies their content to the current expression. The order in which you spread your object **matters**. In case of objects with the same fields, earlier declarations are overridden by the matching ones that come later.
 
 ```javascript
 const numbers = [1, 2, 3];
@@ -94,10 +94,10 @@ const overrideWithFields = {...defaults, debug: false} // {log: false, debug: fa
 
 You can **destructure** (access their inner values directly) objects and arrays.
 ```javascript
-const [first, second] = [1,2,3]; // first: 1, second: 2
-const [, last] = [1,2,3]; // last: 3
+const [first, second] = [1, 2, 3]; // first: 1, second: 2
+const [, last] = [1, 2, 3]; // last: 3
 const add = ([first, second]) => first + second;
-add([1,2]);
+add([1, 2]);
 
 const {a, b} = {a: 1, b: 2}; // a: 1, b: 2
 const add = ({first, second}) => first + second;
@@ -132,19 +132,43 @@ class Hello extends World {
   fullName = () => this.name + this.surname; // method declared as arrow function
 }
 ```
+You can use `export` to export a variable/class/function. One of the exports can be declared as a `default` export.
 
-You can use `export` to export a variable/class/function. You can use `import` to import 3rd party libraries installed via npm and local files.
+You can use `import` to import other JS modules: you can access local files using a relative path, and dependencies installed via NPM using the name of the package in the import statement.
+
+To import a default export:
 
 ```javascript
-// someFile.js
-export const aFunction = () => {};
-const anotherFunction = () => {};
-export default anotherFunction; // this is a default export, only one per file!
+// hello.js
+// you can export a class as default in one line
+export default class Hello {};
+// or, if you're exporting a variable
+const Hello = "world";
+export default Hello;
 
 // anotherFile.js
-import React, {Component} from "react";
-// anotherFunction is imported as a default, aFunction is imported from the module
-import anotherFunction, {aFunction} from "./someFile";
+import React from "react"; // importing from a dependency
+import Hello from "./hello"; // importing from a local file
+```
+
+To import other exports:
+
+```javascript
+// hello.js
+// to export a class as non default, you need to export it after being declared
+class Hello {};
+export {
+  Hello
+}
+// you can export a variable in one line
+export const Hello = "world";
+
+// anotherFile.js
+import {Component} from "react";
+import {Hello} from "./hello";
+// or alternatively, you can have one import and reference fields
+import AnyName from "hello";
+doSomething(AnyName.Hello)
 ```
 
 # Getting started
