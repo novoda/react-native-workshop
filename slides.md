@@ -180,66 +180,108 @@ doSomething(AnyName.Hello)
 
 ---
 # Hello Todo!
-1. Edit `App.js` so that the list rendered from an array:
+Currently, `App.js` is quite boring, it would be great if instead of having the TODOs hardcoded, we could somehow cycle through an array of TODOs and show a `Text` per element.
+
+First of all, we need to extract the data for the TODOs, in `App.js`:
 ```javascript
 const todos = [{
     name: "Take the dog out",
-  }, ...
+  }, // ...
 ];
 ```
-You can use `todos.map()` to return a component, return a `Text` component showing `todo.name`.
+
+The `render` method must return a hierarchy of views that we want to display. We can `map` our todos to views inside that method.
+
+```javascript
+const todoElements = todos.map(todo => <Text>{todo.name}</Text>);
+```
+
+Inside a component you can include a JS expression with `{expression}`, in this case, `{todo.name}`.
+
+Since `todoElements` is an expression, we can include it inside our `View`, instead of the 3 `Text` elements. Remember to use `{}`!
 
 ---
 # Keys in loops
-Components rendered with loops require a `key` property that identifies them.
-Keys are important for react to be able to understand which views have been added, removed or altered. Use `todo.name` as a key for now.
 
----
-# Conventions
-- Sometimes I'll reference React Native components, such as `Text`. These can be imported with `import { ComponentName } from "react-native";`.
-- When you need to create a new component, save it in `ComponentName.js` and import it with `import { ComponentName } from "./ComponentName';`.
+If you reloaded, you'll notice there's a small yellow warning on the bottom of the app. Components rendered with loops require a `key` property that identifies them.
+Keys are important for React to be able to understand which views have been added, removed or altered.
+
+As you can do inside a component, you can use `propName={expression}` to pass properties. If it's a hardcoded string, prefer `propName="value"`.
+
+Before moving to the next step, let's use `todo.name` as a key for our elements.
 
 ---
 # Abstracting away
-The app looks amazing! But it would be great to have a component `Todo` instead of using `Text`. The simplest components can be functions that accept properties and return other components, strings or `null`. Pay attention to the brackets for the function, we'll go over that next.
-```javascript
-export const MyComponent = ({name}) => <Text>Hello {name}!</Text>;
-<MyComponent name="Daniele" /> // Somewhere in the app
-```
-You can reference JS variables using `{curlyBraces}`.
 
----
-# ({a, b, c})?!?
-To write an anonymous function in JS, you can use `const add = (p2, p2) => { return p1 + p2; }`. There are some tricks to make it easier to write though.
-- Instead of having the body, you can directly return an expression `(p1, p2) => p1 + p2`
-- If your parameter is an object, you can directly reference its keys with `{k1, k2}`.
-- React Components receive an object called `properties`, containing the attributes we pass to the component when we use it: `<MyComponent name="Daniele" />`.
+Now that our single TODO is well isolated, we can extract it to a separate component.
+
+The simplest component (a **stateless** component) is a function that returns a tree of elements. It must have no side effects and return the same result given the same input.
+
+```javascript
+const Hello = ({name}) => (
+  <Text>Hello {name}!</Text>
+);
+```
+
+The first argument of the function is the properties passed to the component. We're destructuring it and accessing `name` directly.
+
+You can then import your new component and use it as any other React component. If you declared the component in another file, make sure to export it!
+To pass props to a component, add them as an attribute when you use it.
+
+```javascript
+<Hello name="Daniele" />
+```
+
+Note that, in this case, since we don't accept children (components inside our component), the component has only one tag, which is called self-closing, and terminates with `/>` instead of just `>`.
+
+Extract a `TodoItem` component, that accepts a `name` parameter, and substitute the `Text`s with it.
 
 ---
 # Lists
-Our todo list is coming up quite well, but it won't scroll! We could use `ScrollView`, but then all our todos would be rendered at the same time, even the ones off screen.
-To render arbitrary amount of data, we can use `FlatList`.
-`FlatList` accepts these (and more) parameters:
-1. `data`: is our array of todos
-2. `renderItem`: this is a function which will return a component, it receives an object containing the keys `item` (our todo, in this case) and `index`.
-Rewrite the array mapping with `FlatList`.
+Our TODO list is coming together quite well, but it won't scroll!
 
-Extract the list inside a `TodoList` component.
+There are a few possible solutions to it:
+
+1. Using `ScrollView` instead of our `View` element would make it scrollable.
+2. Using `FlatList`, a similar concept to `RecyclerView` on Android and `UICollectionView` on iOS.
+
+`ScrollView` is usually picked when we have a fixed layout that might not fit in the container, `FlatList` is used when we have an arbitrary amount of data and we want to render only the components that are visible on the screen. We will go with `FlatList`.
+
+`FlatList` accepts various properties, we will focus on 2 of them:
+
+1. `data`, which represents the data we want to render.
+2. `renderItem`, which is expected to be a function. It receives an object containing 2 keys: `item` and `index`, representing the current item in the list and its index, and must return a tree of elements.
+
+We could reuse the same function we used with `todos.map()` earlier, as long as we change how we access the TODOs (the parameters are inside an object, you can destructure to access them directly).
+
+Extract a `TodoList` element, that accepts a property `todos`, a list of TODOs, and uses `FlatList` to render `TodoItem`s.
 
 ---
 # Lists - Keys
-You should now have another warning, `FlatList` needs to figure out the object key somehow, you can solve it two ways:
-1. Add a `key` field to our todos.
-2. Add a new property to `FlatList`: `keyExtractor`. It's a function that receives 2 parameters `(item, index)` and needs to return a `string` key, you could return `todo.name` here. This function isn't receiving an object, don't use the `{}`.
+
+You should now have another warning: `FlatList` needs to somehow figure out the object key. There are 2 ways of solving this.
+
+1. Add a unique `key` field to each one of our TODOs (the data).
+
+```javascript
+const todos = [{
+  name: "Take the dog out",
+  key: "abc"
+}];
+```
+
+2. Alternatively, we can pass an additional property to `TodoList`: `keyExtractor`. This is a function that receives two parameters: `item` and `index` (not inside an object this time), and needs to return a string representing the key of this element.
+
+Pick one of the two options and get rid of the warning, then remove the property `key` from the `TodoItem` element.
 
 ---
 # State & co
-It's time to tick some todos, let's add a new field to them: `completed`, and set it to `false`.
+It's time to tick some TODOs, let's add a new field to them: `completed`, and set it to `false`.
 
 Now, let's add that to our properties in `Todo`, and let's use a `Switch` to display it. The property to tell a `Switch` if it's active or not is `value`.
 
 ---
-# Tick a todo! {.big}
+# Tick a TODO! {.big}
 
 ---
 # It lives..!
@@ -253,7 +295,7 @@ Now, let's add that to our properties in `Todo`, and let's use a `Switch` to dis
 # State - getting and initial
 To make the `Switch` work, we need to **change the state of our app**. React class components can be stateful, which means the `App` component can hold its state and react to events.
 
-To access the state in a component, you can use `this.state`. This means our `App` component can pass the todo list as a property to `TodoList`, receiving it from the state.
+To access the state in a component, you can use `this.state`. This means our `App` component can pass the TODO list as a property to `TodoList`, receiving it from the state.
 
 The initial state can be set in the constructor of a component, or alternatively `state = initialState` inside the class.
 
