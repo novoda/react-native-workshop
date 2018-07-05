@@ -246,7 +246,7 @@ const todos = [{
 }];
 ```
 
-2. Alternatively, we can pass an additional property to `TodoList`: `keyExtractor`. This is a function that receives 2 parameters: `item` and `index` (not inside an object this time), and needs to return a string representing the key of this element.
+2. Alternatively, we can pass an additional property to `TodoList`: `keyExtractor`. This is a function that receives two parameters: `item` and `index` (not inside an object this time), and needs to return a string representing the key of this element.
 
 Pick one of the two options and get rid of the warning, then remove the property `key` from the `TodoItem` element.
 
