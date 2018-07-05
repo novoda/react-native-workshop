@@ -214,7 +214,7 @@ Extract a `TodoItem` component, that accepts a `name` parameter, and substitute 
 
 ---
 # Lists
-Our TODO list is coming up quite well, but it won't scroll!
+Our TODO list is coming together quite well, but it won't scroll!
 
 There are a few possible solutions to it:
 
