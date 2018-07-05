@@ -10,9 +10,9 @@
 
 To declare a variable, you can either use `const` (for constants), or `let` (for variables that can change over time).
 
-TLDR: Do not use `var`.
+tl;dr: Do not use `var`.
 
-Long explanation: `var` is a variable that can have multiple values as `let`, but it's visible in the outer scope (so: globally if outside a function, all the function inside a function). `let` will be visible only inside the scope it's declared in (e.g., a `for` loop inside a function).
+Long explanation: `var` is a variable that can have multiple values like `let`, but it's visible in the outer scope (which means, globally if declared outside a function, in the whole function body if declared inside). `let` will only be visible inside the scope it's declared in (e.g., a `for` loop inside a function).
 
 ```javascript
 const count = 10;
