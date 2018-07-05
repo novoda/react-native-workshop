@@ -156,7 +156,7 @@ import anotherFunction, {aFunction} from "./someFile";
 
 ---
 # Hello Todo!
-Currently `App.js` is quite boring, it would be great if instead of having the todos hardcoded, we could somehow cycle through an array of todos and show a `Text` per element.
+Currently, `App.js` is quite boring, it would be great if instead of having the todos hardcoded, we could somehow cycle through an array of todos and show a `Text` per element.
 
 First of all, we need to extract the data for the todos, in `App.js`:
 ```javascript
