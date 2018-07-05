@@ -269,7 +269,7 @@ Now, let's add that to our properties in `Todo`, and let's use a `Switch` to dis
 
 ---
 # State - getting and initial
-To make the `Switch` work, we need to **change the state of our app**. React class components can be stateful, which means the `App` component can hold its state and React to events.
+To make the `Switch` work, we need to **change the state of our app**. React class components can be stateful, which means the `App` component can hold its state and react to events.
 
 To access the state in a component, you can use `this.state`. This means our `App` component can pass the TODO list as a property to `TodoList`, receiving it from the state.
 
