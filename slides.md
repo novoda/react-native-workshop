@@ -172,7 +172,7 @@ Inside `render()`, you can then map those todos to a certain element:
 const todoElements = todos.map(todo => <Text>{todo.name}</Text>);
 ```
 
-> Inside a component you can include a JS expression with `{expression}`, in this case, `{todo.name}`.
+Inside a component you can include a JS expression with `{expression}`, in this case, `{todo.name}`.
 
 Since `todoElements` is an expression, we can include it inside our `View`, instead of the 3 `Text` elements, remember to use `{}`!
 
@@ -182,7 +182,7 @@ Since `todoElements` is an expression, we can include it inside our `View`, inst
 If you reloaded, you'll notice there's a small yellow warning on the bottom of the app. Components rendered with loops require a `key` property that identifies them.
 Keys are important for react to be able to understand which views have been added, removed or altered.
 
-> As you can do inside a component, you can use `propName={expression}` to pass properties. If it's a hardcoded string, prefer `propName="value"`.
+As you can do inside a component, you can use `propName={expression}` to pass properties. If it's a hardcoded string, prefer `propName="value"`.
 
 Before moving to the next step, let's use `todo.name` as a key for our elements.
 
@@ -199,7 +199,7 @@ const Hello = ({name}) => (
 );
 ```
 
-> The first argument of the function is the properties passed to the component. We're destructuring it and accessing `name` directly.
+The first argument of the function is the properties passed to the component. We're destructuring it and accessing `name` directly.
 
 You can then import your new component and use it as any other React component. If you declared the component in another file, make sure to export it!
 To pass props to a component, add them as an attribute when you use it.
@@ -208,7 +208,7 @@ To pass props to a component, add them as an attribute when you use it.
 <Hello name="Daniele" />
 ```
 
-> Note that, in this case, since we don't accept children (components inside our component), the component has only one tag, which is called self-closing, and terminates with `/>` instead of just `>`.
+Note that, in this case, since we don't accept children (components inside our component), the component has only one tag, which is called self-closing, and terminates with `/>` instead of just `>`.
 
 Extract a `TodoItem` component, that accepts a `name` parameter, and substitute the `Text`s with it.
 
