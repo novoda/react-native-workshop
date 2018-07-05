@@ -220,7 +220,7 @@ There are a few possible solutions to it:
 1. Using `ScrollView` instead of our `View` element would make it scrollable.
 2. Using `FlatList`, a similar concept to `RecyclerView` on Android and `UICollectionView` on iOS.
 
-`ScrollView` is usually picked when we have a fixed layout that might not fit in the container, `FlatList` is used when we have an arbitrary amount of data and we want it to be rendered when on screen. We will go with `FlatList`.
+`ScrollView` is usually picked when we have a fixed layout that might not fit in the container, `FlatList` is used when we have an arbitrary amount of data and we want to render only the components that are visible on screen. We will go with `FlatList`.
 
 > `FlatList` accepts various parameters, in our case we're interested in `data`, which is a list of items to render (our todos), and `renderItem`, which is a callback to render our `Todo` item.
 
