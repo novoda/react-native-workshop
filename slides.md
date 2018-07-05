@@ -235,7 +235,7 @@ Extract a `TodoList` element, that accepts a property `todos`, a list of TODOs, 
 ---
 # Lists - Keys
 
-You should now have another warning: `FlatList` needs to figure out the object key somehow. There are 2 ways of solving this.
+You should now have another warning: `FlatList` needs to somehow figure out the object key. There are 2 ways of solving this.
 
 1. Add a unique `key` field to each one of our TODOs (the data).
 
