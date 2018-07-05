@@ -215,7 +215,7 @@ Extract a `TodoItem` component, that accepts a `name` parameter, and substitute 
 # Lists
 Our todo list is coming up quite well, but it won't scroll!
 
-There are a few possible solution to it:
+There are a few possible solutions to it:
 
 1. Using `ScrollView` instead of our `View` element would make it scrollable.
 2. Using `FlatList`, a similar concept to `RecyclerView` on Android and `UICollectionView` on iOS.
