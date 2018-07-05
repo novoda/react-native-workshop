@@ -166,7 +166,7 @@ const todos = [{
 ];
 ```
 
-Inside `render()`, you can then map those TODOs to a certain element:
+The `render` method must return a hierarchy of views that we want to display. We can `map` our todos to views inside that method.
 
 ```javascript
 const todoElements = todos.map(todo => <Text>{todo.name}</Text>);
