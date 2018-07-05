@@ -174,7 +174,7 @@ const todoElements = todos.map(todo => <Text>{todo.name}</Text>);
 
 Inside a component you can include a JS expression with `{expression}`, in this case, `{todo.name}`.
 
-Since `todoElements` is an expression, we can include it inside our `View`, instead of the 3 `Text` elements, remember to use `{}`!
+Since `todoElements` is an expression, we can include it inside our `View`, instead of the 3 `Text` elements. Remember to use `{}`!
 
 ---
 # Keys in loops
