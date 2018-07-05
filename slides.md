@@ -191,7 +191,7 @@ Before moving to the next step, let's use `todo.name` as a key for our elements.
 
 Now that our single todo is well isolated, we can extract it to a separate component.
 
-> The simplest component is a function that returns a tree of elements. It must have no side effects and return the same result given the same input.
+The simplest component (a **stateless** component) is a function that returns a tree of elements. It must have no side effects and return the same result given the same input.
 
 ```javascript
 const Hello = ({name}) => (
@@ -199,15 +199,16 @@ const Hello = ({name}) => (
 );
 ```
 
-> The component will receive a parameter containing the props passed to it, in this example `name` is one of the props `Hello` can accept, and we're using destructuring to access it directly.
+> The first argument of the function is the properties passed to the component. We're destructuring it and accessing `name` directly.
 
-> You can then import your new component and use it as any other React component. If you declared the component in another file, make sure to export it!
+You can then import your new component and use it as any other React component. If you declared the component in another file, make sure to export it!
+To pass props to a component, add them as an attribute when you use it.
 
 ```javascript
 <Hello name="Daniele" />
 ```
 
-> Note that in this case, since we don't accept children (components inside our component), the component has only one tag, which is called self closing, and terminates with `/>` instead of just `>`.
+> Note that, in this case, since we don't accept children (components inside our component), the component has only one tag, which is called self closing, and terminates with `/>` instead of just `>`.
 
 Extract a `TodoItem` component, that accepts a `name` parameter, and substitute the `Text`s with it.
 
