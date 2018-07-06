@@ -291,7 +291,7 @@ Now, let's add that to our properties in `Todo`:
 const Todo = ({name, completed}) => ...
 ```
 
-To display the TODO being completed or not, we can use a `Switch`, which accepts a property named `value`.
+To display the two different states of a TODO (completed, incomplete), we can use a `Switch`, which accepts a property named `value`.
 
 ---
 # Altering the state
