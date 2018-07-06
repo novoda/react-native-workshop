@@ -294,12 +294,29 @@ const Todo = ({name, completed}) => ...
 To display the TODO being completed or not, we can use a `Switch`, which accepts a property named `value`.
 
 ---
-# State - getting and initial
-To make the `Switch` work, we need to **change the state of our app**. React class components can be stateful, which means the `App` component can hold its state and react to events.
+# Altering the state
 
-To access the state in a component, you can use `this.state`. This means our `App` component can pass the TODO list as a property to `TodoList`, receiving it from the state.
+If you tried to click one of the switches, you will have noticed that the switch goes back in its original position. This happens because `Switch` is a (controlled component)[https://reactjs.org/docs/forms.html#controlled-components], which in short means that it's state is only updated invoking `setState()`.
 
-The initial state can be set in the constructor of a component, or alternatively `state = initialState` inside the class.
+Usually, React applications tend to have components that hold no state, and which are only responsible for displaying the current state of the app via properties. The state is then usually kept outside of them. In our case, it means we can hold the state inside the `App` component.
+
+The first thing we need to do is to move the TODOs inside the state of component and use it:
+
+```javascript
+const todos = [...];
+
+class App extends Component {
+  state = {
+    todos: todos
+  }
+
+  render() {
+    return <TodoList todos={this.state.todos} />
+  }
+}
+```
+
+This will have the result to set the initial state and use it to render our list.
 
 ---
 # State - altering
