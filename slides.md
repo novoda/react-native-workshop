@@ -318,17 +318,15 @@ class App extends Component {
 
 This will have the result to set the initial state and use it to render our list.
 
----
-# State - altering
+After this, we need to react to inputs by the user. To do that, we need to add a callback to the `Switch` components, and bubble the event up to the `App` component. A callback is just another property in the component, which expects a function as its value. In the case of `Switch`, the property name is `onValueChanged`, which receives a boolean representing the new value (`true`/`false`).
 
-To alter the state of a component, you invoke `this.setState()` inside a component; there are 2 ways of invoking it:
+If we add a callback to `Todo`, `TodoList` can then react to the event. If we do that also in `TodoList`, we can intercept the event in the `App` component.
 
-1. `setState({key: newValue})`, which alters `key` to represent our new state.
-2. `setState(oldState => newState)`, when you need to alter the state of our component but depend on the previous state. Never use the first one and `this.state` as state changes are **asynchronous**.
+To alter the state of a component, you need to invoke `this.setState` inside that component. Trying to write directly to `this.state` will not ensure the propagation of the change. `setState` can be invoked in two ways:
 
----
-# Adding state to the app
+1. `setState({key: newValue})`, which alters `key` to represent our new state. This merges the previous state with the keys provided, so if you alter only one of 2 keys in the state, the second one will remain untouched. Note that this is a **shallow** approach, and works only on the keys in the root.
+2. `setState(oldState => newState)`, which accepts a function.
 
-1. Add a new property to `Todo`: a callback `onTodoChanged`.
-2. Add a new property to `TodoList`: a callback `onTodoChanged`.
-3. Report the event in `App` and set the new state.
+The second case is required when your update depends on the current state. The function receives the current state and must return the new state (which is then merged, like the previous case). Since state updates are asynchronous, this is necessary because you're not ensured to have the latest state inside `this.state`.
+
+Add a callback to the various components, and update the state inside `App`.
