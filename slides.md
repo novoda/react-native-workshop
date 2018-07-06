@@ -281,17 +281,6 @@ It's time to tick some TODOs, let's add a new field to them: `completed`, and se
 Now, let's add that to our properties in `Todo`, and let's use a `Switch` to display it. The property to tell a `Switch` if it's active or not is `value`.
 
 ---
-# Tick a TODO! {.big}
-
----
-# It lives..!
-![](https://media.giphy.com/media/2wwJpbHZeSQ5G/giphy.gif)
-
----
-# ... Or not?
-![](https://media.giphy.com/media/MpceqYw3yRC9y/giphy.gif)
-
----
 # State - getting and initial
 To make the `Switch` work, we need to **change the state of our app**. React class components can be stateful, which means the `App` component can hold its state and react to events.
 
