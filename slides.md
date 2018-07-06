@@ -318,7 +318,7 @@ class App extends Component {
 
 This will have the result to set the initial state and use it to render our list.
 
-After this, we need to react to inputs by the user. To do that, we need to add a callback to the `Switch` components, and bubble the event up to the `App` component. A callback is just another property in the component, which expects a function as its value. In the case of `Switch`, the property name is `onValueChanged`, which receives a boolean representing the new value (`true`/`false`).
+After this, we need to react to inputs by the user. To do that, we need to add a callback to the `Switch` components, and propagate the event up to the `App` component. A callback is just another property in the component, which expects a function as its value. In the case of `Switch`, the property name is `onValueChanged`, which receives a boolean representing the new value (`true`/`false`).
 
 If we add a callback to `Todo`, `TodoList` can then react to the event. If we do that also in `TodoList`, we can intercept the event in the `App` component.
 
