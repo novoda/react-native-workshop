@@ -275,10 +275,23 @@ const todos = [{
 Pick one of the two options and get rid of the warning, then remove the property `key` from the `TodoItem` element.
 
 ---
-# State & co
+# State
 It's time to tick some TODOs, let's add a new field to them: `completed`, and set it to `false`.
 
-Now, let's add that to our properties in `Todo`, and let's use a `Switch` to display it. The property to tell a `Switch` if it's active or not is `value`.
+```javascript
+const todos = [{
+  name: "Take the dog out",
+  completed: false
+}];
+```
+
+Now, let's add that to our properties in `Todo`:
+
+```javascript
+const Todo = ({name, completed}) => ...
+```
+
+To display the TODO being completed or not, we can use a `Switch`, which accepts a property named `value`.
 
 ---
 # State - getting and initial
