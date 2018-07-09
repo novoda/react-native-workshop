@@ -275,41 +275,60 @@ const todos = [{
 Pick one of the two options and get rid of the warning, then remove the property `key` from the `TodoItem` element.
 
 ---
-# State & co
-It's time to tick some TODOs, let's add a new field to them: `completed`, and set it to `false`.
+# State
+It's time to tick some TODOs. let's add a new field to them: `completed`, and set it to `false`.
 
-Now, let's add that to our properties in `Todo`, and let's use a `Switch` to display it. The property to tell a `Switch` if it's active or not is `value`.
+```javascript
+const todos = [{
+  name: "Take the dog out",
+  completed: false
+}];
+```
 
----
-# Tick a TODO! {.big}
+Now, let's add that to our properties in `Todo`:
 
----
-# It lives..!
-![](https://media.giphy.com/media/2wwJpbHZeSQ5G/giphy.gif)
+```javascript
+const Todo = ({name, completed}) => ...
+```
 
----
-# ... Or not?
-![](https://media.giphy.com/media/MpceqYw3yRC9y/giphy.gif)
-
----
-# State - getting and initial
-To make the `Switch` work, we need to **change the state of our app**. React class components can be stateful, which means the `App` component can hold its state and react to events.
-
-To access the state in a component, you can use `this.state`. This means our `App` component can pass the TODO list as a property to `TodoList`, receiving it from the state.
-
-The initial state can be set in the constructor of a component, or alternatively `state = initialState` inside the class.
+To display the two different states of a TODO (completed, incomplete), we can use a `Switch`, which accepts a property named `value`.
 
 ---
-# State - altering
+# Altering the state
 
-To alter the state of a component, you invoke `this.setState()` inside a component; there are 2 ways of invoking it:
+If you tried to click one of the switches, you will have noticed that the switch goes back in its original position. This happens because `Switch` is a (controlled component)[https://reactjs.org/docs/forms.html#controlled-components], which in short means that its state is only updated when invoking `setState()`.
 
-1. `setState({key: newValue})`, which alters `key` to represent our new state.
-2. `setState(oldState => newState)`, when you need to alter the state of our component but depend on the previous state. Never use the first one and `this.state` as state changes are **asynchronous**.
+Usually, React applications tend to have components that hold no state, and which are only responsible for displaying the current state of the app via properties. The state is then usually kept outside of them. In our case, it means we can hold the state inside the `App` component.
 
----
-# Adding state to the app
+As your app grows, keeping the state inside `App` might become cumbersome. In that case, you might want to look at other solutions, for example, [Redux](https://redux.js.org/).
 
-1. Add a new property to `Todo`: a callback `onTodoChanged`.
-2. Add a new property to `TodoList`: a callback `onTodoChanged`.
-3. Report the event in `App` and set the new state.
+The first thing we need to do is to move the TODOs inside the state of component and use it:
+
+```javascript
+const todos = [...];
+
+class App extends Component {
+  state = {
+    todos: todos
+  }
+
+  render() {
+    return <TodoList todos={this.state.todos} />
+  }
+}
+```
+
+This will have the result to set the initial state and use it to render our list.
+
+After this, we need to react to inputs by the user. To do that, we need to add a callback to the `Switch` components, and propagate the event up to the `App` component. A callback is just another property in the component, which expects a function as its value. In the case of `Switch`, the property name is `onValueChanged`, which receives a boolean representing the new value (`true`/`false`).
+
+If we add a callback to `Todo`, `TodoList` can then react to the event. If we do that also in `TodoList`, we can intercept the event in the `App` component.
+
+To alter the state of a component, you need to invoke `this.setState` inside that component. Writing directly to `this.state` will not ensure the propagation of the change. `setState` can be invoked in two ways:
+
+1. `setState({key: newValue})`, which alters `key` to represent our new state. This merges the previous state with the keys provided, so if you alter only one of 2 keys in the state, the second one will remain untouched. Note that this is a **shallow** approach, and works only on the keys in the root.
+2. `setState(oldState => newState)`, which accepts a function.
+
+The second case is required when your update depends on the current state. The function receives the current state and must return the new state (which is then merged, like the previous case). Since state updates are asynchronous, this is necessary because you're not ensured to have the latest state inside `this.state`.
+
+Add a callback to the various components, and update the state inside `App`.
