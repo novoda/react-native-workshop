@@ -276,7 +276,7 @@ Pick one of the two options and get rid of the warning, then remove the property
 
 ---
 # State
-It's time to tick some TODOs, let's add a new field to them: `completed`, and set it to `false`.
+It's time to tick some TODOs. let's add a new field to them: `completed`, and set it to `false`.
 
 ```javascript
 const todos = [{
