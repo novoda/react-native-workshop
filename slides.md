@@ -296,7 +296,7 @@ To display the two different states of a TODO (completed, incomplete), we can us
 ---
 # Altering the state
 
-If you tried to click one of the switches, you will have noticed that the switch goes back in its original position. This happens because `Switch` is a (controlled component)[https://reactjs.org/docs/forms.html#controlled-components], which in short means that its state is only updated invoking `setState()`.
+If you tried to click one of the switches, you will have noticed that the switch goes back in its original position. This happens because `Switch` is a (controlled component)[https://reactjs.org/docs/forms.html#controlled-components], which in short means that its state is only updated when invoking `setState()`.
 
 Usually, React applications tend to have components that hold no state, and which are only responsible for displaying the current state of the app via properties. The state is then usually kept outside of them. In our case, it means we can hold the state inside the `App` component.
 
