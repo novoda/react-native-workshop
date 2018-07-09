@@ -300,6 +300,8 @@ If you tried to click one of the switches, you will have noticed that the switch
 
 Usually, React applications tend to have components that hold no state, and which are only responsible for displaying the current state of the app via properties. The state is then usually kept outside of them. In our case, it means we can hold the state inside the `App` component.
 
+As your app grows, keeping the state inside `App` might become cumbersome. In that case, you might want to look at other solutions, for example, [Redux](https://redux.js.org/).
+
 The first thing we need to do is to move the TODOs inside the state of component and use it:
 
 ```javascript
