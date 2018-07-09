@@ -322,7 +322,7 @@ After this, we need to react to inputs by the user. To do that, we need to add a
 
 If we add a callback to `Todo`, `TodoList` can then react to the event. If we do that also in `TodoList`, we can intercept the event in the `App` component.
 
-To alter the state of a component, you need to invoke `this.setState` inside that component. Trying to write directly to `this.state` will not ensure the propagation of the change. `setState` can be invoked in two ways:
+To alter the state of a component, you need to invoke `this.setState` inside that component. Writing directly to `this.state` will not ensure the propagation of the change. `setState` can be invoked in two ways:
 
 1. `setState({key: newValue})`, which alters `key` to represent our new state. This merges the previous state with the keys provided, so if you alter only one of 2 keys in the state, the second one will remain untouched. Note that this is a **shallow** approach, and works only on the keys in the root.
 2. `setState(oldState => newState)`, which accepts a function.
