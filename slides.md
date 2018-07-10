@@ -332,3 +332,36 @@ To alter the state of a component, you need to invoke `this.setState` inside tha
 The second case is required when your update depends on the current state. The function receives the current state and must return the new state (which is then merged, like the previous case). Since state updates are asynchronous, this is necessary because you're not ensured to have the latest state inside `this.state`.
 
 Add a callback to the various components, and update the state inside `App`.
+
+# Promises
+
+The standard interface to do asynchronous work in JS is `Promise`. A promise is an object representing something that will end in the future.
+
+## Receiving results
+
+To access the results of a promise (the promise was **resolved**), you need invoke the `then` method and provide a callback to it. The callback will receive the result of the operation as the only parameter.
+
+If you return a value inside that callback, you'll create a new promise which will resolve to that return value. You can also return a promise inside a promise, it will be resolved before calling the next step.
+
+```javascript
+Promise.resolve(2) // creates a promise that immediately resolves with value 2
+  .then(n => n * 2) // n = 2
+  .then(m => Promise.resolve(m * 3)) // m = 4
+  .then(o => doSomething(o)) // o = 12
+```
+## Intercepting errors
+
+To intercept eventual errors in a promise (the promise was **rejected**), you need to invoke the `catch` method and provide a callback to it. The callback will receive the error as the only parameter.
+
+If you throw inside a `then` (or return a rejected promise, for example `Promise.reject`), the promise will be rejected and you can `catch` after it.
+
+If you return a value in `catch`, it creates a new promise resolving to that value.
+
+```javascript
+Promise.resolve("Hello!")
+  .then(n => throw new Error("My mistake!"))
+  .catch(e => return "No problem");
+  .then(value => Promise.reject("I don't like this"))
+```
+
+If you don't `catch` a rejected promise, it will throw an error and crash (as if you didn't catch an exception in a try/catch statement).
