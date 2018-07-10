@@ -339,7 +339,7 @@ The standard interface to do asynchronous work in JS is `Promise`. A promise is 
 
 ## Receiving results
 
-To access the results of a promise (the promise was **resolved**), you need invoke the `then` method and provide a callback to it. The callback will receive the result of the operation as the only parameter.
+To access the results of a promise (the promise was **resolved**), you need to invoke the `then` method and provide a callback to it. The callback will receive the result of the operation as the only parameter.
 
 If you return a value inside that callback, you'll create a new promise which will resolve to that return value. You can also return a promise inside a promise, it will be resolved before calling the next step.
 
