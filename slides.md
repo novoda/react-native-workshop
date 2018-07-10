@@ -335,7 +335,7 @@ Add a callback to the various components, and update the state inside `App`.
 
 # Promises
 
-The standard interface to do asynchronous work in JS is `Promise`. A promise is an object representing something that will end in the future.
+The standard interface to do asynchronous work in JS is `Promise`. A promise is an object representing something (for example, a network request) that will end in the future.
 
 ## Receiving results
 
