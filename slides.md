@@ -364,4 +364,4 @@ Promise.resolve("Hello!")
   .then(value => Promise.reject("I don't like this"))
 ```
 
-If you don't `catch` a rejected promise, it will throw an error and crash (as if you didn't catch an exception in a try/catch statement).
+If you don't `catch` a rejected promise, it will throw an error and crash (the same as if you didn't catch an exception in a try/catch statement).
