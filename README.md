@@ -389,7 +389,7 @@ There isn't a standard place for us to store the state, there is [`componentWill
 
 ```javascript
 const onTodoChanged = (todo, index) => {
-  this.setState({todos: newTodos})
+  this.setState({todos: newTodos});
   AsyncStorage.set('todos', newTodos);
 }
 ```
