@@ -3,9 +3,6 @@
 ## All the things!
 
 ---
-# The tools
-
----
 # JavaScript basics
 
 To declare a variable, you can either use `const` (for constants), or `let` (for variables that can change over time).
