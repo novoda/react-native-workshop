@@ -361,8 +361,8 @@ If you return a value in `catch`, it creates a new promise resolving to that val
 
 ```javascript
 Promise.resolve("Hello!")
-  .then(n => throw new Error("My mistake!"))
-  .catch(e => return "No problem");
+  .then(n => { throw new Error("My mistake!") })
+  .catch(e => "No problem");
   .then(value => Promise.reject("I don't like this"))
 ```
 
