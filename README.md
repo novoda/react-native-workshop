@@ -385,7 +385,7 @@ componentDidMount() {
 
 To store something, we can use `setItem`: it accepts a key and the value that we want to store, it returns a promise that will be resolved when the data is stored (in this case, when the promise is resolved, we won't receive any value).
 
-There isn't a standard place for us to store the state, there is [`componentWillUnmount`](https://reactjs.org/docs/react-component.html#componentwillunmount) but the JS machine won't wait for us to save the state. One possible option is to save the state every time we update it.
+There isn't a standard lifecycle method that we can use to persist our state. [`componentWillUnmount`](https://reactjs.org/docs/react-component.html#componentwillunmount) will be invoked when the application is shutting down, but it won't wait for `AsyncStorage` to write to disk. One possible option is to save the state every time we update it.
 
 ```javascript
 const onTodoChanged = (todo, index) => {
