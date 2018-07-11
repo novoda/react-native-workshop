@@ -376,6 +376,13 @@ To retrieve something stored, we can use `getItem`: it accepts a key and it retu
 
 To retrieve the state when the application is initialized, we can use one of the lifecycle callbacks of a component (they're present only in class components), [`componentDidMount`](https://reactjs.org/docs/react-component.html#componentdidmount) and set the retrieved state inside the promise callback.
 
+```javascript
+componentDidMount() {
+  AsyncStorage.get('todos')
+    .then(todos => this.setState({todos: todos}));
+}
+```
+
 To store something, we can use `setItem`: it accepts a key and the value that we want to store, it returns a promise that will be resolved when the data is stored (in this case, when the promise is resolved, we won't receive any value).
 
 There isn't a standard place for us to store the state, there is [`componentWillUnmount`](https://reactjs.org/docs/react-component.html#componentwillunmount) but the JS machine won't wait for us to save the state. One possible option is to save the state every time we update it.
