@@ -337,6 +337,8 @@ Add a callback to the various components, and update the state inside `App`.
 
 The standard interface to do asynchronous work in JS is `Promise`. A promise is an object representing something (for example, a network request) that will end in the future.
 
+Unlike `Observable`, a `Promise` is immediately executed upon creation!
+
 ## Receiving results
 
 To access the results of a promise (the promise was **resolved**), you need to invoke the `then` method and provide a callback to it. The callback will receive the result of the operation as the only parameter.
