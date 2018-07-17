@@ -406,3 +406,10 @@ Inside a modal, you can have any view, remember to use `SafeAreaView` at the roo
 To react to the user wanting to close the modal (tapping the back button, or tapping outside), we can add the `onRequestClose` property to it, which is a callback invoked when that happens.
 
 You can also close programmatically the modal, just by altering the state and passing false to `visible`. You will have to do that also when intercepting `onRequestClose`.
+
+We need to create a component to add TODOs, and we will need a few things from it:
+
+1. It needs to hold the modal visibility, so it'll have to be a class component holding state.
+2. It needs to expose a callback `onTodoSaved(todo)` to intercept when the user completes adding a TODO.
+
+To do that, `AddTodo` should hold 2 components: a `Button` to trigger the modal opening, and the modal itself. The modal should contain a `TextInput` for the user to write the TODO name in (remember, it's a controlled component, like `Switch`), and a `Button` to save the TODO.
