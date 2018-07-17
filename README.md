@@ -364,3 +364,31 @@ Promise.resolve("Hello!")
 ```
 
 If you don't `catch` a rejected promise, it will throw an error and crash (the same as if you didn't catch an exception in a try/catch statement).
+
+# Persisting the state
+
+Let's make sure that changes in our list are persisted between apps restarts. To do that, we will be using [`AsyncStorage`](https://facebook.github.io/react-native/docs/asyncstorage.html).
+
+To retrieve something stored, we can use `getItem`: it accepts a key and it returns a promise, the result will be either the previously stored data, or `null` if there isn't any.
+
+To retrieve the state when the application is initialized, we can use one of the lifecycle callbacks of a component (they're present only in class components), [`componentDidMount`](https://reactjs.org/docs/react-component.html#componentdidmount) and set the retrieved state inside the promise callback.
+
+```javascript
+componentDidMount() {
+  AsyncStorage.get('todos')
+    .then(todos => this.setState({todos: todos}));
+}
+```
+
+To store something, we can use `setItem`: it accepts a key and the value that we want to store, it returns a promise that will be resolved when the data is stored (in this case, when the promise is resolved, we won't receive any value).
+
+There isn't a standard lifecycle method that we can use to persist our state. [`componentWillUnmount`](https://reactjs.org/docs/react-component.html#componentwillunmount) will be invoked when the application is shutting down, but it won't wait for `AsyncStorage` to write to disk. One possible option is to save the state every time we update it.
+
+```javascript
+const onTodoChanged = (todo, index) => {
+  this.setState({todos: newTodos});
+  AsyncStorage.set('todos', newTodos);
+}
+```
+
+Try to toggle some todos and restart the app, the changes should now be kept!
