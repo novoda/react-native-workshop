@@ -399,7 +399,7 @@ We need a way to add a TODO after the app started. We could navigate to a new pa
 
 A `Modal` is a component that will be drawn over other widgets, and has 2 states: visible and invisible. Differently from native world, the modal component is always present in the tree, and controlling its visibility is done via the `visible` boolean property.
 
-Note that having a component in the tree in React doesn't necessarily mean that component will be present in the view hierarchy. React only generates a tree representing the intended view hierarchy, the native driver implementation that makes use of that data will then decide if to add or remove that view from the hierarchy.
+Note that having a component in the tree in React doesn't necessarily mean that component will be present in the view hierarchy. React only generates a tree representing the intended view hierarchy, the native driver implementation that makes use of that data will then decide to add or remove that view from the hierarchy (the decision is based on the difference between the previous and the current tree).
 
 Inside a modal, you can have any view, remember to use `SafeAreaView` at the root to avoid the content going under system areas in iOS!
 
