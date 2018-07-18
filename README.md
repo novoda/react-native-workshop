@@ -405,7 +405,7 @@ Inside a modal, you can have any view, remember to use `SafeAreaView` at the roo
 
 To react to the user wanting to close the modal (tapping the back button, or tapping outside), we can add the `onRequestClose` property to it, which is a callback invoked when that happens.
 
-You can also close programmatically the modal, just by altering the state and passing false to `visible`. You will have to do that also when intercepting `onRequestClose`.
+You can also close programmatically the modal, just by altering the state and setting the `visible` property to `false`. You will have to do that also when intercepting `onRequestClose`.
 
 We need to create a component to add TODOs, and we will need a few things from it:
 
