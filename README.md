@@ -392,3 +392,24 @@ const onTodoChanged = (todo, index) => {
 ```
 
 Try to toggle some todos and restart the app, the changes should now be kept!
+
+# Adding new TODOs
+
+We need a way to add a TODO after the app started. We could navigate to a new page, add the TODO and go back, but for the sake of this exercise we'll use a (`Modal`)[https://facebook.github.io/react-native/docs/modal] instead.
+
+A `Modal` is a component that will be drawn over other widgets, and has 2 states: visible and invisible. Differently from native world, the modal component is always present in the tree, and controlling its visibility is done via the `visible` boolean property.
+
+Note that having a component in the tree in React doesn't necessarily mean that component will be present in the view hierarchy. React only generates a tree representing the intended view hierarchy, the native driver implementation that makes use of that data will then decide to add or remove that view from the hierarchy (the decision is based on the difference between the previous and the current tree).
+
+Inside a modal, you can have any view, remember to use `SafeAreaView` at the root to avoid the content going under system areas in iOS!
+
+To react to the user wanting to close the modal (tapping the back button, or tapping outside), we can add the `onRequestClose` property to it, which is a callback invoked when that happens.
+
+You can also close programmatically the modal, just by altering the state and setting the `visible` property to `false`. You will have to do that also when intercepting `onRequestClose`.
+
+We need to create a component to add TODOs, and we will need a few things from it:
+
+1. It needs to hold the modal visibility, so it'll have to be a class component holding state.
+2. It needs to expose a callback `onTodoSaved(todo)` to intercept when the user completes adding a TODO.
+
+To do that, `AddTodo` should hold 2 components: a `Button` to trigger the modal opening, and the modal itself. The modal should contain a `TextInput` for the user to write the TODO name in (remember, it's a controlled component, like `Switch`), and a `Button` to save the TODO.
